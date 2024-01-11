@@ -12,8 +12,8 @@ let actions = {
     async getLifeIdex({ commit }, cityId) {
         let result = await getLifeIdex(cityId);
         if (result.code == 200) {
-            console.log("生活指数：");
-            console.log(result);
+            // console.log("生活指数：");
+            // console.log(result);
             commit("GETLIFEIDEX", result);
         }
     }

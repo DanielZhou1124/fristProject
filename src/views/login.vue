@@ -24,7 +24,7 @@
 </template>
 
 <script>
-import { login,setCityData } from "../api/index";
+import { login,setCityData,getUserinfo } from "../api/index";
 export default {
   methods:{
     login_user(){
@@ -36,19 +36,31 @@ export default {
         console.log(res);
         if(res.code==200){
           localStorage.setItem("city_token",res.token)
-          // 存储城市信息到后端
-          JSON.parse()
-          JSON.stringify()
-          let cityDataLocal=JSON.parse(localStorage.getItem("cityDataKey"))
-          let cityDataCloud=[{"cityName":"北京","cityId":"101010100","cityNameAdm1":"北京市","cityNameAdm2":"北京"}]
-          console.log(cityDataCloud[0].cityId);
-          for(let i=0;i<cityDataLocal.length;i++){
-            for(let j=0;j<cityDataCloud.length;j++){
-              if(cityDataLocal[i].cityId==cityDataCloud[j].cityId) break
-            }
-          }
-          setCityData()
-          this.$router.push('/personalPage')
+          // 获取用户信息
+          getUserinfo().then((res)=>{
+            console.log(res.data.cityMessage);
+            let cityMessage=JSON.parse(res.data.cityMessage)
+            let cityMessageLocal=JSON.parse(localStorage.getItem("cityDataKey"))
+            // 合并json本地和数据库中城市数据并去除重复
+            var newCityMessage = cityMessage.concat(cityMessageLocal), //合并成一个数组
+            temp = {}, //用于id判断重复
+            result = []; //最后的新数组
+            //遍历c数组，将每个item.id在temp中是否存在值做判断， 
+            newCityMessage.map((item) => {
+                if (!temp[item.cityId]) {
+                    result.push(item);
+                    temp[item.cityId] = true
+                }
+            })
+            console.log(result)
+            localStorage.setItem("cityDataKey",JSON.stringify(result))
+            // 向服务器设置城市信息
+            setCityData(JSON.stringify(result))
+            this.$router.replace('/personalPage')
+            this.$router.go(-1)
+            // history.replaceState({},"","./personalPage")
+          })
+          
         }
       })
     }
@@ -56,7 +68,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 
 .login-container .login-ls {
   height: 70px;

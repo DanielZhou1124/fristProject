@@ -10,7 +10,7 @@ const mutations = {
 const actions = {
     async getCityList({ commit }, cityId) {
         let resule = await getCityList(cityId)
-        console.log(resule);
+            // console.log(resule);
         if (resule.code == 200) {
             commit("GETCITYLIST", resule)
         }

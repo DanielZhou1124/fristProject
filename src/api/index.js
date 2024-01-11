@@ -17,8 +17,8 @@ export const get24HourData = (cityId) => requests({ method: "get", url: `v7/weat
 
 // 生活指数
 export const getLifeIdex = (cityId) => requests({ method: "get", url: `v7/indices/1d?location=${cityId}&key=6c148a06cdee43e5b94043f511c60e02&type=1,3,4,5,` })
-
-//七天接口
+export const getLifeIdexAll = (data) => requests({ method: "get", url: `v7/indices/1d?location=${data.cityId}&key=6c148a06cdee43e5b94043f511c60e02&type=1,2,3,4,5,6,7,8,9,11,12,13,14,15,16` })
+    //七天接口
 export const get7DayData = (cityId) => {
         //箭头函数可以在程序任意地方使用,箭头函数返回即为服务器的数据
         //下面箭头函数返回值：返回的是什么? promise,即为返回服务器的数据
@@ -47,11 +47,14 @@ export const login = (data) => requests({
     })
     // 获取用户信息
 export const getUserinfo = () => requests({ method: "get", url: "my/userinfo" })
+    // 添加城市信息
 export const setCityData = (data) => requests({
-    method: "post",
-    url: "my/setCityData",
-    data: data,
-    headers: {
-        "Content-Type": "text/plain",
-    }
-})
+        method: "post",
+        url: "my/setCityData",
+        data: data,
+        headers: {
+            "Content-Type": "text/plain",
+        }
+    })
+    // 定位api
+export const getPositioning = () => requests({ method: "get", url: "/ws/location/v1/ip?key=536BZ-T52WH-QGEDF-WGONU-XIQMQ-SGBJA" })

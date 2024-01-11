@@ -15,8 +15,8 @@ let actions = {
     async getWeather({ commit }, cityId) {
         let result = await getWeather(cityId);
         if (result.code == 200) {
-            console.log("实时天气：");
-            console.log(result);
+            // console.log("实时天气：");
+            // console.log(result);
             commit('GETWEATHER', result.now);
         }
     },

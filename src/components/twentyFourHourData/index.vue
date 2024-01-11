@@ -1,6 +1,6 @@
 <template>
   <div class="hour24">
-    <span class="hour24-biaoti">  24小时天气></span>
+    <span class="hour24-biaoti" @click="gotwentyFourDetails">  24小时天气></span>
     <div class="hour24-text">
       <div class="text" v-for="(a,index ) in data24" :key="index" >
         <span>{{`${a.fxTime}`.substring(11,13)}}时</span>
@@ -19,7 +19,12 @@
 
 
 export default {
-  props:["data24"]
+  props:["data24"],
+  methods:{
+    gotwentyFourDetails(){
+      this.$router.push("/twentyFourDetails")
+    }
+  }
 };
 </script>
 

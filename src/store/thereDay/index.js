@@ -22,8 +22,8 @@ let actions = {
         let result = await get3DayData(cityId);
 
         if (result.code == 200) {
-            console.log("三天：");
-            console.log(result);
+            // console.log("三天：");
+            // console.log(result);
             commit('GETDAYDATA', result.daily);
         }
     },
@@ -31,8 +31,8 @@ let actions = {
     async get24HourData({ commit }, cityId) {
         let result = await get24HourData(cityId);
         if (result.code == 200) {
-            console.log("24小时：");
-            console.log(result);
+            // console.log("24小时：");
+            // console.log(result);
             commit('GET24HOURDATA', result);
         }
     }

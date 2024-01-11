@@ -17,7 +17,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .styles {
   height: 70px;
   font-size: 20px;

@@ -87,7 +87,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .mete li {
   /* border: 1px solid red; */
   height: 40px;

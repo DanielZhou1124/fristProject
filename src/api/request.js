@@ -13,7 +13,7 @@ let requests = axios.create({
 requests.interceptors.request.use(config => {
     //请求拦截器:请求头【header】,请求头能否给服务器携带参数
     //请求拦截器：其实项目中还有一个重要的作用,给服务器携带请求们的公共的参数
-    console.log(localStorage.getItem("city_token"));
+    // console.log(localStorage.getItem("city_token"));
     if (localStorage.getItem("city_token")) {
         config.headers.Authorization = localStorage.getItem("city_token");
     }

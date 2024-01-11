@@ -13,6 +13,10 @@ import set from '../views/set'
 import feedback from '../views/feedback'
 import aboutUs from '../views/aboutUs'
 import version from '../views/version'
+import ceshi from '../views/ceshi'
+import WeatherIndexDetails from '../views/WeatherIndexDetails'
+import twentyFourDetails from '../views/twentyFourDetails'
+import fifteenDetails from '../views/fifteenDetails'
 Vue.use(VueRouter)
 
 const routes = [{
@@ -23,6 +27,16 @@ const routes = [{
         path: '/home',
         name: 'home',
         component: home
+    },
+    {
+        path: '/twentyFourDetails',
+        name: 'twentyFourDetails',
+        component: twentyFourDetails
+    },
+    {
+        path: '/fifteenDetails',
+        name: 'fifteenDetails',
+        component: fifteenDetails
     },
     {
         path: '/addCity',
@@ -79,6 +93,17 @@ const routes = [{
         name: 'version',
         component: version
     },
+    {
+        path: '/ceshi',
+        name: 'ceshi',
+        component: ceshi
+    },
+    {
+        path: '/WeatherIndexDetails',
+        name: 'WeatherIndexDetails',
+        component: WeatherIndexDetails
+    },
+
 ]
 
 const router = new VueRouter({

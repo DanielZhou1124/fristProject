@@ -10,8 +10,8 @@ let mutations = {
 let actions = {
     async getCity({ commit }, address) {
         let result = await getCity(address);
-        console.log("111");
-        console.log(result);
+        // console.log("111");
+        // console.log(result);
         if (result.code == 200) {
             commit("GETCITY", result)
             console.log("000");

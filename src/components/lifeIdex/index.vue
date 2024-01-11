@@ -1,6 +1,6 @@
 <template>
   <div class="shzs" v-if="LifeIdex">
-    <span class="shzs-biaoti">生活指数 ></span>
+    <span class="shzs-biaoti" @click="goWeatherIndexDetails">生活指数 ></span>
     <div class="shzs-some">
       <div class="text">
         <span><img src="../../../public/icon-imgs/1.png" alt=""></span>
@@ -33,6 +33,11 @@ export default {
   data(){
     return{
       
+    }
+  },
+  methods:{
+    goWeatherIndexDetails(){
+      this.$router.push("./WeatherIndexDetails")
     }
   }
 };

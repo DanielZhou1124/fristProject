@@ -11,8 +11,8 @@ let actions = {
     async get15DayData({ commit }, cityId) {
         let result = await get15DayData(cityId);
         if (result.code == 200) {
-            console.log("15天天气");
-            console.log(result);
+            // console.log("15天天气");
+            // console.log(result);
             commit("GETSHIWDAYDATA", result)
         }
     }

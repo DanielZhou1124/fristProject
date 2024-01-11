@@ -13,7 +13,7 @@ export default {
 }
 </script>
 
-<style>
+<style scoped>
 .version_span{
   display: block;
   text-align: center;

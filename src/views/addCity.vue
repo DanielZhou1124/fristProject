@@ -59,7 +59,6 @@ export default {
     dataStorage(cityName,cityId,cityNameAdm1,cityNameAdm2){
       let flage = 0;
       var arr1 = JSON.parse(localStorage.getItem("cityDataKey"));
-      
       for (let i = 0; i < arr1.length; i++) {
         if (arr1[i].cityId == cityId) {
           flage = 1;
@@ -67,16 +66,16 @@ export default {
           alert("已经存在");
           break
         } 
-
       }
       if(flage==0){
           console.log(arr1);
-          arr1.push({
+          arr1.unshift({
             cityName: cityName,
             cityId: cityId,
             cityNameAdm1: cityNameAdm1,
             cityNameAdm2: cityNameAdm2,
           });
+          alert("已添加"+cityNameAdm1+" "+cityNameAdm2+" "+cityName)
           // 再次添加到本地
           localStorage.setItem("cityDataKey", JSON.stringify(arr1));
         }
@@ -104,7 +103,9 @@ export default {
   mounted() {
     this.$store.dispatch("getCityList");
   },
-  beforeDestroy() {},
+  beforeDestroy() {
+    
+  },
   computed: {
     ...mapState({
       getCity: (state) => state.getCity.getCity,
@@ -114,7 +115,7 @@ export default {
 };
 </script>
 
-<style>
+<style scoped>
 .head-top-height {
   height: 32px;
   font-size: 21px;

@@ -1,6 +1,6 @@
 <template>
   <div class="for7dayhome">
-    <span class="for7day-title">15天预报  ></span>
+    <span class="for7day-title" @click="gofifteenDetails">15天预报  ></span>
     <div class="for7day-list">
       <div class="for7day-item fore7day-active" v-for="(datas,index) in get15DayData.daily" :key="index">
         <span class="time">{{`${datas.fxDate}`.substring(5).replace("-","/")}}</span>
@@ -22,7 +22,11 @@
 
 export default {
   props: ["get15DayData"],
-
+  methods:{
+    gofifteenDetails(){
+        this.$router.push("/fifteenDetails")
+    }
+}
 };
 </script>
 

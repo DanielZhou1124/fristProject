@@ -8,7 +8,9 @@ import "./assets/css/normalize.css"
 import VueTouch from "vue-touch";
 
 Vue.use(VueTouch, { name: "v-touch" });
-
+import { ScrollTab, ScrollTabCol } from "../node_modules/scroll-tab-bar/src/index"
+Vue.component('scrollTab', ScrollTab)
+Vue.component('ScrollTabCol', ScrollTabCol)
 
 import VueAwesomeSwiper from 'vue-awesome-swiper'
 import 'swiper/dist/css/swiper.css'

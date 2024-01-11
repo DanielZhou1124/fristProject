@@ -11,7 +11,7 @@
     <div class="addCity">
       <p>
         <img
-          @click="goAddCity()"
+          @click="AddPositionCity()"
           src="../../public/imgs/img1/location.png"
           style="margin-left: 15px"
         />添加定位城市
@@ -33,7 +33,9 @@
   </div>
 </template>
 
-<script>
+<script scoped>
+
+import {setCityData,getPositioning,getCity} from "../api/index";
 export default {
   data() {
     return {
@@ -75,12 +77,64 @@ export default {
         }
       }
     },
+    dataStorage(cityName,cityId,cityNameAdm1,cityNameAdm2){
+      let flage = 0;
+      var arr1 = JSON.parse(localStorage.getItem("cityDataKey"));
+      for (let i = 0; i < arr1.length; i++) {
+        if (arr1[i].cityId == cityId) {
+          flage = 1;
+          //   console.log(flage);
+          alert("已经存在");
+          break
+        } 
+      }
+      if(flage==0){
+          console.log(arr1);
+          arr1.unshift({
+            cityName: cityName,
+            cityId: cityId,
+            cityNameAdm1: cityNameAdm1,
+            cityNameAdm2: cityNameAdm2,
+          });
+          alert("已添加"+cityNameAdm1+" "+cityNameAdm2+" "+cityName)
+          // 再次添加到本地
+          localStorage.setItem("cityDataKey", JSON.stringify(arr1));
+        }
+    },
+    AddPositionCity(){
+      getPositioning().then((res)=>{
+        // 经纬度
+        let lngLat=res.result.location.lng+","+res.result.location.lat
+        // 查询位置
+        getCity(lngLat).then((res)=>{
+          console.log(res)
+          // 添加到本地
+          let cityNameAdm1 = res.location[0].adm1;
+          let cityNameAdm2 = res.location[0].adm2;
+          let cityName = res.location[0].name;
+          let cityId = res.location[0].id;
+          this.dataStorage(cityName,cityId,cityNameAdm1,cityNameAdm2);
+          this.$router.go(0)
+        })
+        console.log(res)
+      })
+    },
     goAddCity() {
-      this.$router.push("/addCity");
+      this.$router.push("./addCity")
     },
     back() {
+      //离开前先把数据发送服务器
+      let data=JSON.stringify(localStorage.getItem("cityDataKey"))
+      console.log(data)
+      setCityData(data).then((res)=>{
+        console.log(res);
+      })
       history.back();
     },
+  },
+  beforeDestroy() {
+    
+    
   },
 };
 </script>
@@ -125,14 +179,14 @@ export default {
   height: 50px;
   width: 100%;
   font-size: 20px;
-  border: solid 1px red;
+  /* border: solid 1px rgb(87, 82, 82); */
   line-height: 50px;
   list-style-type: none;
 }
 .cityMasssage .text {
   margin-left: 30px;
   font-size: 16px;
-  border: solid 1px red;
+  /* border: solid 1px red; */
 }
 .cityMasssage button {
   float: right;

@@ -33,7 +33,7 @@ export default {
 };
 </script>
 
-<style lang="less">
+<style lang="less" scoped>
 .home-top {
   img {
     height: 30px;
